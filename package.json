@@ -1,0 +1,42 @@
+{
+  "name": "express-hls-example",
+  "version": "1.0.0",
+  "description": "Express, HLS를 사용한 간단한 동영상 스트리밍 예제",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HoseungJang/express-hls-example.git"
+  },
+  "author": "HoseungJang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HoseungJang/express-hls-example/issues"
+  },
+  "homepage": "https://github.com/HoseungJang/express-hls-example#readme",
+  "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "axios": "^1.4.0",
+    "busboy": "^0.2.14",
+    "connect-busboy": "^0.0.2",
+    "cors": "^2.8.5",
+    "current-git-branch": "^1.1.0",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.4.0",
+    "fluent-ffmpeg": "^2.1.2",
+    "hls-server": "^1.5.0",
+    "http-attach": "^1.0.0",
+    "http-status-codes": "^2.2.0",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^6.5.3",
+    "morgan": "^1.10.0",
+    "node-cron": "^3.0.2",
+    "node-uuid": "^1.4.8",
+    "nodemon": "^2.0.22",
+    "progress-stream": "^2.0.0",
+    "simple-hls": "^0.0.1"
+  }
+}
