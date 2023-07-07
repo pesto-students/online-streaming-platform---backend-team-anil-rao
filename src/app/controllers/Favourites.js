@@ -136,7 +136,7 @@ module.exports.controllerFunction = function (app) {
 
   mainRouter.post("/delete", middleWares.Filter, async (req, res, next) => {
     mainModel.findOneAndDelete(
-      { _id: req.body._id },
+      req.body,
       function (err, myResponse) {
         if (err) {
           sendRes(true, 500, null, err, 0, res);

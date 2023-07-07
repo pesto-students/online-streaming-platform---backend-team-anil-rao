@@ -1,1 +1,1 @@
-exports.localBuild = true;
+exports.localBuild = false;

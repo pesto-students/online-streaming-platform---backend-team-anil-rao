@@ -28,6 +28,7 @@ module.exports.controllerFunction = function (app) {
 
     newModel.save(function (err, myResponse) {
       if (err) {
+        console.log("ERROR IS -> ",err)
         sendRes(true, 500, null, err, 0, res);
         return;
       } else {

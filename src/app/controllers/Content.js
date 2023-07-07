@@ -69,6 +69,36 @@ module.exports.controllerFunction = function (app) {
       .paginate()
       .search()
   });
+  mainRouter.post("/readAllTrending", middleWares.Filter, async (req, res, next) => {
+    const { page, limit } = req.body;
+    if (!page || !limit) {
+      sendRes(true, 400, null, "page or limit is missing!", 0, res);
+      return;
+    }
+    new APIFeatures(
+      mainModel.find(function (err, response) {
+        if (err) {
+          sendRes(true, 500, null, err, 0, res);
+          return;
+        } else {
+          response = response.sort((a,b) => b.noOfViews - a.noOfViews);
+          sendRes(
+            false,
+            200,
+            response,
+            "Request successfully served.",
+            response.length,
+            res
+          );
+        }
+      }),
+      req.body
+    )
+      .filter()
+      .limitFields()
+      .paginate()
+      .search()
+  });
 
   mainRouter.post("/readOne", middleWares.Filter, async (req, res, next) => {
     mainModel.findOne({ _id: req.body._id }, function (err, myResponse) {

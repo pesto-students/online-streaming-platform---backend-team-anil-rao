@@ -37,6 +37,11 @@ class APIFeatures {
 
     return this;
   }
+  sortByContentViews(sortBy = "-") {
+      this.query = this.query.sort("contentViews");
+
+    return this;
+  }
 
   limitFields() {
     if (this.queryString.fields) {
