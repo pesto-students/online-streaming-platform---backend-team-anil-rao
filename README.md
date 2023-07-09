@@ -5,11 +5,8 @@ Online Streaming Service Backend + transcoding Server
 This Project was a part of Demo project at Pesto.
 
 ## Project Details
-The project aim's at providing api's for Data exchange between Online Streaming Service Backend and Frontend, the project provides addition functionality of transcoding as a part of converting a normal mp4 file to a more secure streming protocol known as HLS.
+The project aim's at providing api's for Data exchange between Online Streaming Service Backend and Frontend, the project provides addition functionality of transcoding as a part of converting a normal mp4 file to a more secure streaming protocol known as HLS.
 
-### Redux Assignment 1
-
-The Code for Assignment-14 can be found on link:- https://codesandbox.io/s/plain-react-state-lightswitch-forked-kkddjx?file=/src/index.js
 
 ## How to use the code
 
