@@ -40,6 +40,10 @@ const userSchema = new Schema({
   isAdmin:{
     type: Boolean,
     default: false
+  },
+  salt:{
+    type:String,
+    default:""
   }
 });
 

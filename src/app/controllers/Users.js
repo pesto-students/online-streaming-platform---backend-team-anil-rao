@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const { countDoc } = require("../../libs/factoryFunctions");
-
+var crypto = require('crypto'); 
 
 const mainRouter = express.Router();
 const APIFeatures = require("../../libs/apiFeatures");
@@ -14,10 +14,16 @@ var dateGenerator = require("../../libs/dateGenerator");
 module.exports.controllerFunction = function (app) {
   mainRouter.post("/create", middleWares.Filter, async (req, res, next) => {
     var dateis = dateGenerator.datefunction();
+
+    let salt = crypto.randomBytes(16).toString('hex');
+    let hash = crypto.pbkdf2Sync(req.body.password, salt,  
+    1000, 64, `sha512`).toString(`hex`);
+
     const newModel = new mainModel({
+      salt: salt,
       userName: req.body.userName,
       email: req.body.email,
-      password: req.body.password,
+      password: hash,
       planSelected: req.body.planSelected,
       isAdmin: req.body.isAdmin,
       cDate: dateis,
@@ -43,12 +49,30 @@ module.exports.controllerFunction = function (app) {
       sendRes(true, 400, null, "page or limit is missing!", 0, res);
       return;
     }
+    let password = null;
+    if("password" in req.body)
+    {
+      password = req.body.password;
+      delete req.body.password;
+    }
     new APIFeatures(
       mainModel.find(function (err, response) {
         if (err) {
           sendRes(true, 500, null, err, 0, res);
           return;
         } else {
+          if(response != null && response != undefined && response.length > 0 && password != null)
+          {
+            let salt = response[0]?.salt
+            let hash = crypto.pbkdf2Sync(password, salt,  
+            1000, 64, `sha512`).toString(`hex`);
+            console.log(`HASH ${response[0].password} AND GENERATED HASH ${hash}`)
+            if(hash != response[0].password)
+            {
+              response = [];
+            }
+          }
+
           sendRes(
             false,
             200,
