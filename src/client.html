@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>HLS Player</title>
+</head>
+
+<body>
+    <video id="video" width="500" height="500" controls></video>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script>
+        const video = document.getElementById('video');
+        
+        // const videoSrc = 'https://competishun-video-player-backend.moneyyapp.in/Video/hls/output.m3u8';
+        const videoSrc = 'videos/output.m3u8';
+        // const videoSrc = '/videos/20230516154321-HlsMp4TestFile.mp4/index.m3u8';
+        // const videoSrc = 'https://hls-test.moneyyapp.in/videos-output/20230517173513-test/index.m3u8';
+        // const videoSrc = 'https://hls-test.moneyyapp.in/videos-output/20230531113335-XII-Function-L-1-TermsRelatedtoGraphs/360.m3u8';
+        // const videoSrc = 'https://hls-files.sgp1.digitaloceanspaces.com/videos-input/20230525105129-physicsQuestion/video.mp4';
+
+        if (Hls.isSupported()) {
+            const hls = new Hls();
+
+            hls.loadSource(videoSrc);
+
+            hls.attachMedia(video);
+            
+            hls.on(Hls.Events.MANIFEST_PARSED, () => {
+                video.play();
+            });
+        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = videoSrc;
+            video.addEventListener('loadedmetadata', () => {
+                video.play();
+            });
+        }
+    </script>
+</body>
+
+</html>
