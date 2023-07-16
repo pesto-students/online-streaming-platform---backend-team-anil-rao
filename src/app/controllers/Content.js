@@ -81,7 +81,7 @@ module.exports.controllerFunction = function (app) {
           sendRes(true, 500, null, err, 0, res);
           return;
         } else {
-          response = response.sort((a,b) => b.noOfViews - a.noOfViews);
+          response = response.sort((a,b) => b.contentViews - a.contentViews);
           sendRes(
             false,
             200,
